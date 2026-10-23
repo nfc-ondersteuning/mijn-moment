@@ -1,0 +1,286 @@
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NA SCHOOL | Mijn Moment</title>
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 18px;
+  background: #eaf2ed;
+  color: #263b36;
+  font-family: Arial, sans-serif;
+}
+
+main {
+  max-width: 480px;
+  margin: 20px auto;
+  padding: 26px 20px;
+  background: white;
+  border-radius: 24px;
+  box-shadow: 0 5px 22px #0000000d;
+  text-align: center;
+}
+
+.brand {
+  color: #527f72;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+h1 {
+  font-size: 32px;
+  margin: 16px 0 10px;
+}
+
+h2 {
+  font-size: 25px;
+  line-height: 1.3;
+}
+
+p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.intro {
+  color: #52635d;
+}
+
+.choices {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 24px 0;
+}
+
+.choice {
+  min-height: 115px;
+  border: 2px solid transparent;
+  border-radius: 18px;
+  background: #edf3f0;
+  color: #263b36;
+  cursor: pointer;
+  font-size: 17px;
+  font-weight: bold;
+  padding: 12px 6px;
+}
+
+.choice:active {
+  transform: scale(0.97);
+}
+
+.choice:focus-visible,
+button:focus-visible {
+  outline: 3px solid #263b36;
+  outline-offset: 3px;
+}
+
+.emoji {
+  display: block;
+  font-size: 35px;
+  margin-bottom: 9px;
+}
+
+.action {
+  width: 100%;
+  margin-top: 14px;
+  padding: 17px;
+  border: 0;
+  border-radius: 14px;
+  background: #527f72;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.secondary {
+  background: #edf3f0;
+  color: #263b36;
+}
+
+.hidden { display: none; }
+
+.message {
+  margin: 22px 0;
+  padding: 22px 16px;
+  background: #edf3f0;
+  border-radius: 18px;
+}
+
+.bigEmoji {
+  font-size: 58px;
+  margin: 10px 0;
+}
+
+.small {
+  color: #52635d;
+  font-size: 14px;
+}
+
+@media (max-width: 350px) {
+  h1 { font-size: 27px; }
+  .choice { font-size: 15px; }
+}
+</style>
+</head>
+
+<body>
+<main>
+  <div class="brand">MIJN MOMENT ✨</div>
+
+  <section id="home">
+    <h1>🏡 Eindelijk thuis.</h1>
+    <p class="intro">
+      School zit erop.<br>
+      Je hoeft niet meteen door.
+    </p>
+
+    <h2>Waar heb jij nu zin in?</h2>
+
+    <div class="choices">
+      <button class="choice" onclick="choose('music')">
+        <span class="emoji">🎧</span>
+        Muziek
+      </button>
+
+      <button class="choice" onclick="choose('read')">
+        <span class="emoji">📖</span>
+        Lezen
+      </button>
+
+      <button class="choice" onclick="choose('chill')">
+        <span class="emoji">🛋️</span>
+        Chillen
+      </button>
+
+      <button class="choice" onclick="choose('drink')">
+        <span class="emoji">🥤</span>
+        Iets drinken
+      </button>
+
+      <button class="choice" onclick="choose('move')">
+        <span class="emoji">🚶</span>
+        Bewegen
+      </button>
+
+      <button class="choice" onclick="choose('nothing')">
+        <span class="emoji">🌿</span>
+        Even niks
+      </button>
+    </div>
+
+    <p class="small">
+      Jouw moment. Jouw keuze.<br>
+      Er is geen goed of fout.
+    </p>
+  </section>
+
+  <section id="activity" class="hidden">
+    <div id="activityEmoji" class="bigEmoji"></div>
+    <h2 id="activityTitle"></h2>
+
+    <div class="message">
+      <p id="activityText"></p>
+    </div>
+
+    <p class="intro">
+      Neem de tijd die jij nodig hebt.
+    </p>
+
+    <button class="action" onclick="finish()">
+      Ik ben weer klaar
+    </button>
+
+    <button class="action secondary" onclick="show('home')">
+      Toch iets anders kiezen
+    </button>
+  </section>
+
+  <section id="finished" class="hidden">
+    <div class="bigEmoji">🌟</div>
+    <h2>Goed dat je even tijd voor jezelf nam.</h2>
+
+    <p>
+      Hoe je je ook voelt: je mag rustig
+      verder met je middag.
+    </p>
+
+    <button class="action" onclick="show('home')">
+      Nog iets kiezen
+    </button>
+  </section>
+
+  <p class="small">
+    Deze pagina slaat je keuzes niet op.
+  </p>
+</main>
+
+<script>
+const activities = {
+  music: {
+    emoji: "🎧",
+    title: "Even muziek luisteren",
+    text: "Zet een nummer op waar jij je fijn bij voelt. Je hoeft nu even nergens aan te denken."
+  },
+  read: {
+    emoji: "📖",
+    title: "Even lezen",
+    text: "Pak een boek, strip of tijdschrift. Zoek een fijne plek en lees op jouw tempo."
+  },
+  chill: {
+    emoji: "🛋️",
+    title: "Lekker chillen",
+    text: "Ga ergens zitten of liggen waar jij je prettig voelt. Je hoeft even niets."
+  },
+  drink: {
+    emoji: "🥤",
+    title: "Iets drinken",
+    text: "Pak iets lekkers te drinken. Neem rustig een paar slokken en kom even bij."
+  },
+  move: {
+    emoji: "🚶",
+    title: "Even bewegen",
+    text: "Loop een rondje, rek je uit of beweeg op een manier die voor jou fijn voelt."
+  },
+  nothing: {
+    emoji: "🌿",
+    title: "Helemaal even niks",
+    text: "Je hoeft niets te kiezen of te bereiken. Gewoon even zijn is ook goed."
+  }
+};
+
+function show(id) {
+  document.querySelectorAll("section").forEach(section => {
+    section.classList.add("hidden");
+  });
+
+  document.getElementById(id).classList.remove("hidden");
+}
+
+function choose(type) {
+  const activity = activities[type];
+
+  document.getElementById("activityEmoji").textContent =
+    activity.emoji;
+
+  document.getElementById("activityTitle").textContent =
+    activity.title;
+
+  document.getElementById("activityText").textContent =
+    activity.text;
+
+  show("activity");
+}
+
+function finish() {
+  show("finished");
+}
+</script>
+</body>
+</html>
