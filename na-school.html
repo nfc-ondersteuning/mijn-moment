@@ -48,9 +48,7 @@ p {
   line-height: 1.6;
 }
 
-.intro {
-  color: #52635d;
-}
+.intro { color: #52635d; }
 
 .choices {
   display: grid;
@@ -71,9 +69,7 @@ p {
   padding: 12px 6px;
 }
 
-.choice:active {
-  transform: scale(0.97);
-}
+.choice:active { transform: scale(0.97); }
 
 .choice:focus-visible,
 button:focus-visible {
@@ -193,8 +189,8 @@ button:focus-visible {
       Neem de tijd die jij nodig hebt.
     </p>
 
-    <button class="action" onclick="finish()">
-      Ik ben weer klaar
+    <button class="action" onclick="show('feelings')">
+      🌿 Hoe voel ik me nu?
     </button>
 
     <button class="action secondary" onclick="show('home')">
@@ -202,22 +198,49 @@ button:focus-visible {
     </button>
   </section>
 
-  <section id="finished" class="hidden">
-    <div class="bigEmoji">🌟</div>
-    <h2>Goed dat je even tijd voor jezelf nam.</h2>
+  <section id="feelings" class="hidden">
+    <div class="bigEmoji">🌿</div>
+    <h2>Even voelen...</h2>
+    <p>Je hebt even tijd voor jezelf genomen.</p>
+    <h2>Hoe voel jij je nu?</h2>
 
-    <p>
-      Hoe je je ook voelt: je mag rustig
-      verder met je middag.
+    <button class="action" onclick="chooseFeeling('better')">
+      🙂 Ik voel me fijner
+    </button>
+
+    <button class="action" onclick="chooseFeeling('okay')">
+      😐 Het gaat wel
+    </button>
+
+    <button class="action" onclick="chooseFeeling('rest')">
+      💛 Ik heb nog rust nodig
+    </button>
+
+    <button class="action" onclick="chooseFeeling('talk')">
+      🤝 Ik wil even praten
+    </button>
+
+    <p class="small">
+      Er is geen goed of fout.
+      Alles wat je voelt mag er zijn.
     </p>
+  </section>
+
+  <section id="finished" class="hidden">
+    <div id="feelingEmoji" class="bigEmoji"></div>
+    <h2 id="feelingTitle"></h2>
+
+    <div class="message">
+      <p id="feelingText"></p>
+    </div>
 
     <button class="action" onclick="show('home')">
-      Nog iets kiezen
+      Terug naar mijn keuzes
     </button>
   </section>
 
   <p class="small">
-    Deze pagina slaat je keuzes niet op.
+    Deze pagina slaat je keuzes of gevoelens niet op.
   </p>
 </main>
 
@@ -255,12 +278,35 @@ const activities = {
   }
 };
 
+const feelings = {
+  better: {
+    emoji: "🙂",
+    title: "Fijn dat je je beter voelt!",
+    text: "Neem dat fijne gevoel rustig mee je middag in."
+  },
+  okay: {
+    emoji: "😐",
+    title: "Het gaat wel. Dat mag.",
+    text: "Je hoeft je niet meteen helemaal goed te voelen. Kijk rustig wat je nu nodig hebt."
+  },
+  rest: {
+    emoji: "💛",
+    title: "Nog wat rust nodig?",
+    text: "Luister naar jezelf. Je mag nog wat langer rust nemen."
+  },
+  talk: {
+    emoji: "🤝",
+    title: "Je hoeft het niet alleen te doen.",
+    text: "Zoek iemand die je vertrouwt, zoals een ouder of begeleider. Je mag vertellen hoe het met je gaat."
+  }
+};
+
 function show(id) {
   document.querySelectorAll("section").forEach(section => {
     section.classList.add("hidden");
   });
-
   document.getElementById(id).classList.remove("hidden");
+  window.scrollTo(0, 0);
 }
 
 function choose(type) {
@@ -268,17 +314,24 @@ function choose(type) {
 
   document.getElementById("activityEmoji").textContent =
     activity.emoji;
-
   document.getElementById("activityTitle").textContent =
     activity.title;
-
   document.getElementById("activityText").textContent =
     activity.text;
 
   show("activity");
 }
 
-function finish() {
+function chooseFeeling(type) {
+  const feeling = feelings[type];
+
+  document.getElementById("feelingEmoji").textContent =
+    feeling.emoji;
+  document.getElementById("feelingTitle").textContent =
+    feeling.title;
+  document.getElementById("feelingText").textContent =
+    feeling.text;
+
   show("finished");
 }
 </script>
