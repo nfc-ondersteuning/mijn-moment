@@ -7,140 +7,141 @@
 <title>Mijn Houvast – DEMO</title>
 
 <style>
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
   padding: 16px;
   background: #eaf3ed;
-  color: #2e4039;
+  color: #30443a;
   font-family: Arial, sans-serif;
 }
 
 main {
   max-width: 490px;
-  margin: 12px auto;
+  margin: 10px auto;
 }
 
 .brand {
   text-align: center;
-  color: #628579;
+  color: #688778;
   font-size: 13px;
   font-weight: bold;
   letter-spacing: 2px;
-  margin: 20px 0;
+  margin: 22px 0;
 }
 
-.screen { display: none; }
-.screen.active { display: block; }
+.screen {
+  display: none;
+}
+
+.screen.active {
+  display: block;
+}
 
 .card {
-  background: white;
-  padding: 27px 21px;
+  background: #ffffff;
+  padding: 28px 22px;
   border-radius: 25px;
   box-shadow: 0 6px 25px #294b3510;
   text-align: center;
 }
 
 .emoji {
-  font-size: 56px;
-  margin: 15px 0;
+  font-size: 52px;
+  margin: 12px 0 18px;
 }
 
 h1 {
-  font-size: 31px;
-  margin: 12px 0;
+  font-size: 30px;
+  margin: 10px 0;
 }
 
 h2 {
   font-size: 25px;
   line-height: 1.3;
+  margin: 12px 0;
 }
 
 p {
+  color: #607166;
   font-size: 17px;
-  line-height: 1.55;
-  color: #5b6b62;
-}
-
-.note {
-  background: #f0f6f1;
-  padding: 17px;
-  border-radius: 17px;
-  margin: 20px 0;
+  line-height: 1.6;
 }
 
 button, a.button {
-  font-family: inherit;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.primary, .secondary, .choice, .urgent {
   display: block;
   width: 100%;
+  padding: 16px;
+  margin-top: 12px;
   border: none;
   border-radius: 16px;
-  padding: 17px;
-  margin-top: 11px;
-  font-size: 17px;
+  font-family: inherit;
+  font-size: 16px;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .primary {
   background: #638c7a;
-  color: white;
+  color: #ffffff;
   font-weight: bold;
 }
 
 .secondary {
   background: #edf4ef;
-  color: #344d40;
-}
-
-.urgent {
-  background: #fff0e8;
-  color: #80452d;
-  font-weight: bold;
+  color: #365344;
 }
 
 .choice {
-  background: #f0f5f1;
-  color: #30463b;
+  background: #f1f6f2;
+  color: #354c40;
   text-align: left;
 }
 
 .choice strong {
   display: block;
+  font-size: 17px;
 }
 
 .choice small {
   display: block;
   margin-top: 5px;
-  color: #687a70;
   font-size: 13px;
+  color: #738278;
   line-height: 1.4;
 }
 
+.note {
+  background: #f1f6f2;
+  border-radius: 17px;
+  padding: 15px 18px;
+  margin: 20px 0;
+}
+
+.note p {
+  margin: 4px 0;
+}
+
 .helpbar {
-  margin-top: 15px;
-  text-align: center;
+  margin-top: 16px;
 }
 
 .helpbar button {
-  background: transparent;
-  border: 1px solid #b8cfc1;
-  border-radius: 14px;
-  color: #344d40;
-  padding: 13px;
-  width: 100%;
+  background: #ffffff;
+  border: 1px solid #bfd3c5;
+  color: #355344;
   font-size: 15px;
 }
 
 .small {
-  font-size: 13px;
-  color: #7b8980;
+  color: #7c8b80;
+  font-size: 12px;
   text-align: center;
-  line-height: 1.5;
+  line-height: 1.6;
+  margin: 20px 5px;
 }
 
 a {
@@ -149,7 +150,7 @@ a {
 
 button:focus-visible,
 a:focus-visible {
-  outline: 3px solid #263b36;
+  outline: 3px solid #284b3d;
   outline-offset: 3px;
 }
 </style>
@@ -160,52 +161,41 @@ a:focus-visible {
 
 <div class="brand">MIJN MOMENT 🌿</div>
 
+<!-- WELKOM -->
+
 <section id="welcome" class="screen active">
   <div class="card">
     <div class="emoji">🌿</div>
+
     <h1>Mijn Houvast</h1>
+
     <p>
-      Soms zijn mijn gedachten zwaar.
-      Op deze pagina kan ik kijken wat mij helpt
-      en wie er voor mij is.
+      Even een moment voor jezelf.
     </p>
 
-    <button class="primary" onclick="go('safe')">
-      Bekijk mijn stappen
-    </button>
-  </div>
-</section>
-
-<section id="safe" class="screen">
-  <div class="card">
-    <div class="emoji">💚</div>
-    <h2>Voel je je nu veilig?</h2>
     <p>
-      Je hoeft niet precies te weten hoe je je voelt.
-      Kies wat het beste past.
+      Soms zit je hoofd vol of voel je je niet fijn.
+      Hier kun je kijken wat jou op dit moment
+      kan helpen.
     </p>
 
     <button class="primary" onclick="go('choices')">
-      Ja, ik kan iets proberen
-    </button>
-
-    <button class="secondary" onclick="go('support')">
-      Ik twijfel
-    </button>
-
-    <button class="urgent" onclick="go('support')">
-      Nee, ik voel me niet veilig
+      Kijk wat mij helpt
     </button>
   </div>
 </section>
+
+<!-- ACTIVITEITEN -->
 
 <section id="choices" class="screen">
   <div class="card">
     <div class="emoji">🍃</div>
-    <h2>Wat kan mij nu helpen?</h2>
+
+    <h2>Waar heb je nu behoefte aan?</h2>
+
     <p>
       Kies iets wat bij je past.
-      Je hoeft niet alles te proberen.
+      Er is geen goede of foute keuze.
     </p>
 
     <button class="choice" onclick="choose('music')">
@@ -215,7 +205,7 @@ a:focus-visible {
 
     <button class="choice" onclick="choose('draw')">
       <strong>🎨 Tekenen of kleuren</strong>
-      <small>Je aandacht ergens anders op richten</small>
+      <small>Met iets creatiefs bezig zijn</small>
     </button>
 
     <button class="choice" onclick="choose('series')">
@@ -229,20 +219,28 @@ a:focus-visible {
     </button>
 
     <button class="choice" onclick="choose('ground')">
-      <strong>🌿 Om me heen kijken</strong>
+      <strong>🌿 Even om me heen kijken</strong>
       <small>Mijn aandacht naar het hier en nu brengen</small>
     </button>
   </div>
 </section>
 
+<!-- GEKOZEN ACTIVITEIT -->
+
 <section id="activity" class="screen">
   <div class="card">
     <div class="emoji" id="activityEmoji">🌿</div>
+
     <h2 id="activityTitle"></h2>
 
     <div class="note">
       <p id="activityText"></p>
     </div>
+
+    <p>
+      Neem de tijd die voor jou prettig voelt.
+      Je hoeft niets af te maken.
+    </p>
 
     <button class="primary" onclick="go('check')">
       Hoe gaat het nu?
@@ -251,89 +249,112 @@ a:focus-visible {
     <button class="secondary" onclick="go('choices')">
       Iets anders kiezen
     </button>
-
-    <p class="small">
-      Je mag altijd stoppen.
-      Je hoeft niets af te maken.
-    </p>
   </div>
 </section>
+
+<!-- CHECK -->
 
 <section id="check" class="screen">
   <div class="card">
     <div class="emoji">💚</div>
-    <h2>Hoe gaat het nu met je?</h2>
+
+    <h2>Wat heb je nu nodig?</h2>
+
     <p>
-      Het hoeft niet meteen beter te zijn.
-      Wat heb je op dit moment nodig?
+      Misschien voel je wat meer rust.
+      Misschien ook niet.
+      Allebei mag.
     </p>
 
     <button class="primary" onclick="go('better')">
-      Ik voel me veilig en iets rustiger
+      Ik voel me wat rustiger en veilig
     </button>
 
     <button class="secondary" onclick="go('choices')">
       Ik wil nog iets proberen
     </button>
 
-    <button class="urgent" onclick="go('support')">
-      Ik twijfel of voel me niet veilig
+    <button class="secondary" onclick="go('support')">
+      Ik wil graag iemand spreken
+    </button>
+
+    <button class="secondary" onclick="go('support')">
+      Ik voel me niet veilig
     </button>
   </div>
 </section>
+
+<!-- AFRONDING -->
 
 <section id="better" class="screen">
   <div class="card">
     <div class="emoji">🌱</div>
+
     <h2>Fijn dat je iets meer rust voelt</h2>
+
     <p>
-      Je hebt gekeken wat je nodig hebt.
-      Dat is waardevol.
+      Je hebt gekeken wat jou kan helpen.
+      Fijn dat je even aandacht aan jezelf
+      hebt gegeven.
     </p>
 
     <div class="note">
       <p>
-        Blijf in contact met iemand die je vertrouwt
-        en houd je aan de afspraken die voor jou gelden.
+        Blijf in contact met mensen
+        die je vertrouwt en volg de afspraken
+        die voor jou zijn gemaakt.
       </p>
     </div>
 
-    <button class="primary" onclick="restart()">
-      Klaar voor nu
+    <button class="primary" onclick="go('welcome')">
+      Verder met mijn dag
     </button>
 
-    <button class="secondary" onclick="go('support')">
-      Toch iemand spreken
+    <button class="secondary" onclick="go('choices')">
+      Nog iets proberen
     </button>
   </div>
 </section>
 
+<!-- STEUN -->
+
 <section id="support" class="screen">
   <div class="card">
     <div class="emoji">🤝</div>
-    <h2>Je hoeft dit niet alleen te dragen</h2>
+
+    <h2>Je hoeft het niet alleen te doen</h2>
 
     <p>
-      Zoek nu contact met iemand die je vertrouwt,
-      bijvoorbeeld een ouder, begeleider
-      of andere volwassene.
+      Soms helpt het om iemand erbij te halen.
+      Je mag altijd om steun vragen.
     </p>
 
     <div class="note">
       <p>
-        Je kunt zeggen:<br>
+        Je kunt bijvoorbeeld zeggen:
+      </p>
+
+      <p>
         <strong>
-          "Ik heb gedachten aan zelfmoord
-          en ik heb nu steun nodig.
-          Kun je bij me blijven?"
+          "Het gaat niet goed met me.
+          Kun je even bij me blijven?"
         </strong>
       </p>
     </div>
 
     <p>
-      Ga naar een plek waar iemand bij je kan zijn.
-      Neem afstand van spullen waarmee je jezelf
-      pijn zou kunnen doen.
+      Voel je je niet veilig of ben je bang
+      dat je jezelf iets aandoet?
+      Zoek dan direct een vertrouwde volwassene
+      of je hulpverlener op.
+      Blijf niet alleen.
+    </p>
+
+    <p>
+      Bij direct gevaar kun je 112 bellen.
+      Voor hulp bij gedachten aan zelfmoord
+      kun je ook contact opnemen met
+      113 Zelfmoordpreventie.
     </p>
 
     <a class="button primary" href="tel:112">
@@ -346,27 +367,31 @@ a:focus-visible {
 
     <a class="button secondary"
        href="https://www.113.nl"
-       target="_blank" rel="noopener noreferrer">
-      Chat met 113 Zelfmoordpreventie
+       target="_blank"
+       rel="noopener noreferrer">
+      Chat met 113
     </a>
 
-    <button class="secondary" onclick="go('choices')">
-      Terug naar de activiteiten
+    <button class="secondary" onclick="go('welcome')">
+      Terug naar het begin
     </button>
   </div>
 </section>
 
+<!-- ALTIJD BEREIKBARE STEUN -->
+
 <div class="helpbar">
   <button onclick="go('support')">
-    🤝 Ik heb nu iemand nodig
+    🤝 Ik heb iemand nodig
   </button>
 </div>
 
 <p class="small">
   DEMONSTRATIE – Dit is geen persoonlijk veiligheidsplan.
-  De activiteiten, contactpersonen en afspraken
-  moeten vóór gebruik met een jongere worden afgestemd
-  met de jongere en betrokken hulpverlener.
+  De activiteiten, contactpersonen en veiligheidsafspraken
+  moeten vóór gebruik samen met de jongere
+  en betrokken hulpverlener worden afgestemd.
+  Bij onveiligheid gaat hulp zoeken altijd voor.
 </p>
 
 </main>
@@ -376,34 +401,38 @@ const activities = {
   music: {
     emoji: "🎧",
     title: "Muziek luisteren",
-    text: "Kies muziek die voor jou vertrouwd en prettig voelt. Luister zolang dat fijn is. Je hoeft verder niets te doen."
+    text: "Kies muziek die voor jou vertrouwd en prettig voelt. Luister zolang je dat fijn vindt."
   },
+
   draw: {
     emoji: "🎨",
     title: "Tekenen of kleuren",
-    text: "Pak papier en potloden. Maak iets, of kleur gewoon wat vormen. Het hoeft niet mooi te worden."
+    text: "Pak papier en potloden. Je kunt tekenen of kleuren wat je wilt. Het hoeft niet mooi te worden."
   },
+
   series: {
     emoji: "📺",
     title: "Een vertrouwde serie kijken",
-    text: "Kies iets bekends waar je je prettig bij voelt. Je mag gewoon even kijken, zonder iets te moeten."
+    text: "Zet een serie op die je kent en waar je je prettig bij voelt. Je hoeft verder even niets."
   },
+
   together: {
     emoji: "🤝",
     title: "Iets samen doen",
-    text: "Vraag iemand die je vertrouwt om bij je te zijn. Misschien kunnen jullie samen iets drinken, praten of een spelletje doen."
+    text: "Vraag iemand die je vertrouwt om iets samen te doen. Misschien samen iets drinken, een spelletje spelen of gewoon bij elkaar zitten."
   },
+
   ground: {
     emoji: "🌿",
-    title: "Om me heen kijken",
-    text: "Kijk rustig om je heen. Noem voor jezelf vijf dingen die je ziet. Voel waar je voeten de grond raken. Stop als het niet prettig voelt."
+    title: "Even om me heen kijken",
+    text: "Kijk rustig om je heen. Welke vijf dingen zie je? Voel je voeten op de grond. Stop gerust als dit niet prettig voelt."
   }
 };
 
 function go(id) {
-  document.querySelectorAll(".screen").forEach(screen => {
-    screen.classList.remove("active");
-  });
+  document.querySelectorAll(".screen").forEach(
+    screen => screen.classList.remove("active")
+  );
 
   document.getElementById(id).classList.add("active");
   window.scrollTo(0, 0);
@@ -422,10 +451,6 @@ function choose(key) {
     activity.text;
 
   go("activity");
-}
-
-function restart() {
-  go("welcome");
 }
 </script>
 
