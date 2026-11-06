@@ -50,8 +50,8 @@ main {
 }
 
 .emoji {
-  font-size: 48px;
-  margin: 10px 0 16px;
+  font-size: 52px;
+  margin: 12px 0 18px;
 }
 
 h1 {
@@ -60,14 +60,14 @@ h1 {
 }
 
 h2 {
-  font-size: 24px;
+  font-size: 25px;
   line-height: 1.3;
   margin: 12px 0;
 }
 
 p {
   color: #607166;
-  font-size: 16px;
+  font-size: 17px;
   line-height: 1.6;
 }
 
@@ -104,12 +104,12 @@ a.button {
 
 .choice strong {
   display: block;
-  font-size: 16px;
+  font-size: 17px;
 }
 
 .choice small {
   display: block;
-  margin-top: 4px;
+  margin-top: 5px;
   font-size: 13px;
   color: #738278;
   line-height: 1.4;
@@ -118,22 +118,12 @@ a.button {
 .note {
   background: #f1f6f2;
   border-radius: 17px;
-  padding: 15px;
-  margin: 18px 0;
-  text-align: left;
+  padding: 15px 18px;
+  margin: 20px 0;
 }
 
 .note p {
-  margin: 6px 0;
-}
-
-.contact-list {
-  margin: 8px 0;
-  padding-left: 8px;
-}
-
-.contact-list p {
-  margin: 10px 0;
+  margin: 4px 0;
 }
 
 .nav {
@@ -147,7 +137,7 @@ a.button {
   font-size: 15px;
 }
 
-.nav .back {
+.nav .home {
   background: #edf4ef;
   border: none;
 }
@@ -158,6 +148,10 @@ a.button {
   text-align: center;
   line-height: 1.6;
   margin: 20px 5px;
+}
+
+a {
+  color: #315f4d;
 }
 
 button:focus-visible,
@@ -195,7 +189,7 @@ a:focus-visible {
   </div>
 </section>
 
-<!-- KEUZEMENU -->
+<!-- ACTIVITEITEN -->
 
 <section id="choices" class="screen">
   <div class="card">
@@ -235,7 +229,7 @@ a:focus-visible {
   </div>
 </section>
 
-<!-- ACTIVITEIT -->
+<!-- GEKOZEN ACTIVITEIT -->
 
 <section id="activity" class="screen">
   <div class="card">
@@ -255,10 +249,14 @@ a:focus-visible {
     <button class="primary" onclick="go('check')">
       Hoe gaat het nu?
     </button>
+
+    <button class="secondary" onclick="go('choices')">
+      Iets anders kiezen
+    </button>
   </div>
 </section>
 
-<!-- HOE GAAT HET -->
+<!-- CHECK -->
 
 <section id="check" class="screen">
   <div class="card">
@@ -268,7 +266,8 @@ a:focus-visible {
 
     <p>
       Misschien voel je wat meer rust.
-      Misschien ook niet. Allebei mag.
+      Misschien ook niet.
+      Allebei mag.
     </p>
 
     <button class="primary" onclick="go('better')">
@@ -283,7 +282,7 @@ a:focus-visible {
       Ik wil graag iemand spreken
     </button>
 
-    <button class="secondary" onclick="go('support')">
+    <button class="secondary" onclick="go('urgent')">
       Ik voel me niet veilig
     </button>
   </div>
@@ -311,66 +310,128 @@ a:focus-visible {
       </p>
     </div>
 
-    <button class="primary" onclick="go('choices')">
-      Nog iets proberen
+    <button class="primary" onclick="go('welcome')">
+      Verder met mijn dag
     </button>
 
-    <button class="secondary" onclick="go('welcome')">
-      Verder met mijn dag
+    <button class="secondary" onclick="go('choices')">
+      Nog iets proberen
     </button>
   </div>
 </section>
 
-<!-- EEN ENKEL HULPSCHERM -->
+<!-- WIE KAN MIJ HELPEN -->
 
 <section id="support" class="screen">
   <div class="card">
+    <div class="emoji">💚</div>
+
+    <h2>Wie kan mij helpen?</h2>
+
+    <p>
+      Je hoeft het niet alleen te doen.
+      Kies iemand bij wie jij je prettig
+      en veilig voelt.
+    </p>
+
+    <button class="choice" onclick="person('parents')">
+      <strong>🏡 Mijn ouder(s) of verzorger(s)</strong>
+      <small>Vraag of ze even bij je kunnen zijn</small>
+    </button>
+
+    <button class="choice" onclick="person('guide')">
+      <strong>🤝 Mijn begeleider of behandelaar</strong>
+      <small>Laat weten hoe het met je gaat</small>
+    </button>
+
+    <button class="choice" onclick="person('other')">
+      <strong>💬 Iemand anders die ik vertrouw</strong>
+      <small>Bijvoorbeeld een familielid of andere volwassene</small>
+    </button>
+
+    <div class="note">
+      <p>
+        Voel je je niet veilig of ben je bang
+        dat je jezelf iets aandoet?
+        Zoek dan direct hulp.
+        Je hoeft niet eerst iets anders te proberen.
+      </p>
+    </div>
+
+    <button class="primary" onclick="go('urgent')">
+      Ik voel me niet veilig
+    </button>
+  </div>
+</section>
+
+<!-- GEKOZEN CONTACTPERSOON -->
+
+<section id="person" class="screen">
+  <div class="card">
+    <div class="emoji" id="personEmoji">🤝</div>
+
+    <h2 id="personTitle"></h2>
+
+    <p id="personText"></p>
+
+    <div class="note">
+      <p>Je kunt bijvoorbeeld zeggen:</p>
+
+      <p>
+        <strong>
+          "Het gaat niet zo goed met me.
+          Kun je even bij me blijven?"
+        </strong>
+      </p>
+    </div>
+
+    <p>
+      In deze demo staan nog geen telefoonnummers.
+      In jouw persoonlijke versie kunnen we
+      contactpersonen toevoegen.
+    </p>
+
+    <button class="primary" onclick="go('support')">
+      Iemand anders kiezen
+    </button>
+
+    <button class="secondary" onclick="go('urgent')">
+      Ik voel me niet veilig
+    </button>
+  </div>
+</section>
+
+<!-- DIRECTE HULP -->
+
+<section id="urgent" class="screen">
+  <div class="card">
     <div class="emoji">🤝</div>
 
-    <h2>Je hoeft het niet alleen te doen</h2>
+    <h2>Zoek nu steun</h2>
 
     <p>
-      Soms helpt het om iemand erbij te halen.
+      Voel je je niet veilig of ben je bang
+      dat je jezelf iets aandoet?
+      Ga direct naar een vertrouwde volwassene
+      of je hulpverlener. Blijf niet alleen.
     </p>
 
     <div class="note">
-      <p><strong>Bij wie kun je terecht?</strong></p>
-
-      <div class="contact-list">
-        <p>🏡 Je ouder(s) of verzorger(s)</p>
-        <p>💚 Je begeleider of behandelaar</p>
-        <p>💬 Iemand anders die je vertrouwt</p>
-      </div>
+      <p>Je kunt zeggen:</p>
+      <p>
+        <strong>
+          "Ik ben niet veilig met mijn gedachten.
+          Ik heb nu hulp nodig.
+          Kun je bij me blijven?"
+        </strong>
+      </p>
     </div>
 
     <p>
-      Je kunt bijvoorbeeld zeggen:
-      <strong>
-        "Het gaat niet goed met me.
-        Kun je even bij me blijven?"
-      </strong>
+      Neem afstand van spullen waarmee je jezelf
+      pijn zou kunnen doen.
+      Bij direct gevaar bel je 112.
     </p>
-
-    <div class="note">
-      <p><strong>Als je je niet veilig voelt</strong></p>
-
-      <p>
-        Zoek direct steun bij een vertrouwde
-        volwassene of hulpverlener.
-        Blijf niet alleen.
-        Je hoeft niet eerst een activiteit te doen.
-      </p>
-
-      <p>
-        Ben je bang dat je jezelf iets aandoet?
-        Neem afstand van spullen waarmee
-        je jezelf pijn zou kunnen doen.
-      </p>
-
-      <p>
-        Bij direct gevaar: bel 112.
-      </p>
-    </div>
 
     <a class="button primary" href="tel:112">
       Bij direct gevaar: bel 112
@@ -386,14 +447,28 @@ a:focus-visible {
        rel="noopener noreferrer">
       Chat met 113
     </a>
+
+    <button class="secondary" onclick="go('support')">
+      Mijn vertrouwde personen bekijken
+    </button>
+
+    <button class="secondary" onclick="go('choices')">
+      ← Terug naar mijn keuzes
+    </button>
+
+    <p class="small">
+      Voel je je niet veilig?
+      Zoek dan eerst steun bij iemand.
+      Je hoeft niet eerst een activiteit te proberen.
+    </p>
   </div>
 </section>
 
 <!-- VASTE NAVIGATIE -->
 
 <div class="nav">
-  <button class="back" id="backButton" onclick="go('choices')">
-    ← Terug naar mijn keuzes
+  <button class="home" id="homeButton" onclick="go('welcome')">
+    🏠 Terug naar het begin
   </button>
 
   <button id="helpButton" onclick="go('support')">
@@ -403,9 +478,9 @@ a:focus-visible {
 
 <p class="small">
   DEMONSTRATIE – Dit is geen persoonlijk veiligheidsplan.
-  Activiteiten, contactpersonen en veiligheidsafspraken
-  worden vóór gebruik samen met de jongere
-  en betrokken hulpverlener afgestemd.
+  De activiteiten, contactpersonen en veiligheidsafspraken
+  moeten vóór gebruik samen met de jongere
+  en betrokken hulpverlener worden afgestemd.
   Bij onveiligheid gaat hulp zoeken altijd voor.
 </p>
 
@@ -444,6 +519,26 @@ const activities = {
   }
 };
 
+const people = {
+  parents: {
+    emoji: "🏡",
+    title: "Mijn ouder(s) of verzorger(s)",
+    text: "Als je je veilig voelt bij je ouder of verzorger, kun je vragen of die even bij je wil zijn."
+  },
+
+  guide: {
+    emoji: "🤝",
+    title: "Mijn begeleider of behandelaar",
+    text: "Je kunt je begeleider of behandelaar laten weten dat je het moeilijk hebt en steun nodig hebt."
+  },
+
+  other: {
+    emoji: "💬",
+    title: "Iemand anders die ik vertrouw",
+    text: "Denk aan een familielid of andere volwassene bij wie je je veilig voelt."
+  }
+};
+
 function go(id) {
   document.querySelectorAll(".screen").forEach(
     screen => screen.classList.remove("active")
@@ -451,13 +546,11 @@ function go(id) {
 
   document.getElementById(id).classList.add("active");
 
-  document.getElementById("backButton").style.display =
-    id === "welcome" || id === "choices"
-      ? "none"
-      : "block";
+  document.getElementById("homeButton").style.display =
+    id === "welcome" ? "none" : "block";
 
   document.getElementById("helpButton").style.display =
-    id === "support"
+    ["support", "person", "urgent"].includes(id)
       ? "none"
       : "block";
 
@@ -477,6 +570,21 @@ function choose(key) {
     activity.text;
 
   go("activity");
+}
+
+function person(key) {
+  const selected = people[key];
+
+  document.getElementById("personEmoji").textContent =
+    selected.emoji;
+
+  document.getElementById("personTitle").textContent =
+    selected.title;
+
+  document.getElementById("personText").textContent =
+    selected.text;
+
+  go("person");
 }
 
 go("welcome");
