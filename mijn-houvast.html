@@ -169,9 +169,7 @@ a:focus-visible {
 
     <h1>Mijn Houvast</h1>
 
-    <p>
-      Even een moment voor jezelf.
-    </p>
+    <p>Even een moment voor jezelf.</p>
 
     <p>
       Soms zit je hoofd vol of voel je je niet fijn.
@@ -278,7 +276,7 @@ a:focus-visible {
       Ik wil graag iemand spreken
     </button>
 
-    <button class="secondary" onclick="go('support')">
+    <button class="secondary" onclick="go('urgent')">
       Ik voel me niet veilig
     </button>
   </div>
@@ -316,45 +314,122 @@ a:focus-visible {
   </div>
 </section>
 
-<!-- STEUN -->
+<!-- WIE KAN MIJ HELPEN -->
 
 <section id="support" class="screen">
   <div class="card">
-    <div class="emoji">🤝</div>
+    <div class="emoji">💚</div>
 
-    <h2>Je hoeft het niet alleen te doen</h2>
+    <h2>Wie kan mij helpen?</h2>
 
     <p>
-      Soms helpt het om iemand erbij te halen.
-      Je mag altijd om steun vragen.
+      Je hoeft het niet alleen te doen.
+      Kies iemand bij wie jij je prettig
+      en veilig voelt.
     </p>
+
+    <button class="choice" onclick="person('parents')">
+      <strong>🏡 Mijn ouder(s) of verzorger(s)</strong>
+      <small>Vraag of ze even bij je kunnen zijn</small>
+    </button>
+
+    <button class="choice" onclick="person('guide')">
+      <strong>🤝 Mijn begeleider</strong>
+      <small>Laat weten hoe het met je gaat</small>
+    </button>
+
+    <button class="choice" onclick="person('other')">
+      <strong>💬 Iemand anders die ik vertrouw</strong>
+      <small>Bijvoorbeeld een familielid of andere volwassene</small>
+    </button>
 
     <div class="note">
       <p>
-        Je kunt bijvoorbeeld zeggen:
+        Voel je je niet veilig of ben je bang
+        dat je jezelf iets aandoet?
+        Zoek dan direct hulp.
+        Je hoeft niet eerst iets anders te proberen.
       </p>
+    </div>
 
+    <button class="primary" onclick="go('urgent')">
+      Ik voel me niet veilig
+    </button>
+
+    <button class="secondary" onclick="go('welcome')">
+      Terug naar het begin
+    </button>
+  </div>
+</section>
+
+<!-- GEKOZEN CONTACTPERSOON -->
+
+<section id="person" class="screen">
+  <div class="card">
+    <div class="emoji" id="personEmoji">🤝</div>
+
+    <h2 id="personTitle"></h2>
+
+    <p id="personText"></p>
+
+    <div class="note">
+      <p>Je kunt bijvoorbeeld zeggen:</p>
       <p>
         <strong>
-          "Het gaat niet goed met me.
+          "Het gaat niet zo goed met me.
           Kun je even bij me blijven?"
         </strong>
       </p>
     </div>
 
     <p>
-      Voel je je niet veilig of ben je bang
-      dat je jezelf iets aandoet?
-      Zoek dan direct een vertrouwde volwassene
-      of je hulpverlener op.
-      Blijf niet alleen.
+      In deze demo staan nog geen telefoonnummers.
+      In jouw persoonlijke versie kunnen we
+      contactpersonen toevoegen.
     </p>
 
+    <button class="primary" onclick="go('support')">
+      Iemand anders kiezen
+    </button>
+
+    <button class="secondary" onclick="go('urgent')">
+      Ik voel me niet veilig
+    </button>
+  </div>
+</section>
+
+<!-- DIRECTE HULP -->
+
+<section id="urgent" class="screen">
+  <div class="card">
+    <div class="emoji">🤝</div>
+
+    <h2>Zoek nu steun</h2>
+
     <p>
-      Bij direct gevaar kun je 112 bellen.
-      Voor hulp bij gedachten aan zelfmoord
-      kun je ook contact opnemen met
-      113 Zelfmoordpreventie.
+      Voel je je niet veilig of ben je bang
+      dat je jezelf iets aandoet?
+      Ga direct naar een vertrouwde volwassene
+      of je hulpverlener. Blijf niet alleen.
+    </p>
+
+    <div class="note">
+      <p>
+        Je kunt zeggen:
+      </p>
+      <p>
+        <strong>
+          "Ik ben niet veilig met mijn gedachten.
+          Ik heb nu hulp nodig.
+          Kun je bij me blijven?"
+        </strong>
+      </p>
+    </div>
+
+    <p>
+      Neem afstand van spullen waarmee je jezelf
+      pijn zou kunnen doen.
+      Bij direct gevaar bel je 112.
     </p>
 
     <a class="button primary" href="tel:112">
@@ -372,8 +447,8 @@ a:focus-visible {
       Chat met 113
     </a>
 
-    <button class="secondary" onclick="go('welcome')">
-      Terug naar het begin
+    <button class="secondary" onclick="go('support')">
+      Mijn vertrouwde personen bekijken
     </button>
   </div>
 </section>
@@ -429,6 +504,26 @@ const activities = {
   }
 };
 
+const people = {
+  parents: {
+    emoji: "🏡",
+    title: "Mijn ouder(s) of verzorger(s)",
+    text: "Als je je veilig voelt bij je ouder of verzorger, kun je vragen of die even bij je wil zijn."
+  },
+
+  guide: {
+    emoji: "🤝",
+    title: "Mijn begeleider",
+    text: "Je kunt je begeleider laten weten dat je het moeilijk hebt en steun nodig hebt."
+  },
+
+  other: {
+    emoji: "💬",
+    title: "Iemand anders die ik vertrouw",
+    text: "Denk aan een familielid of andere volwassene bij wie je je veilig voelt."
+  }
+};
+
 function go(id) {
   document.querySelectorAll(".screen").forEach(
     screen => screen.classList.remove("active")
@@ -451,6 +546,21 @@ function choose(key) {
     activity.text;
 
   go("activity");
+}
+
+function person(key) {
+  const selected = people[key];
+
+  document.getElementById("personEmoji").textContent =
+    selected.emoji;
+
+  document.getElementById("personTitle").textContent =
+    selected.title;
+
+  document.getElementById("personText").textContent =
+    selected.text;
+
+  go("person");
 }
 </script>
 
