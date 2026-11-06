@@ -71,7 +71,8 @@ p {
   line-height: 1.6;
 }
 
-button, a.button {
+button,
+a.button {
   display: block;
   width: 100%;
   padding: 16px;
@@ -125,15 +126,20 @@ button, a.button {
   margin: 4px 0;
 }
 
-.helpbar {
+.nav {
   margin-top: 16px;
 }
 
-.helpbar button {
+.nav button {
   background: #ffffff;
   border: 1px solid #bfd3c5;
   color: #355344;
   font-size: 15px;
+}
+
+.nav .home {
+  background: #edf4ef;
+  border: none;
 }
 
 .small {
@@ -355,10 +361,6 @@ a:focus-visible {
     <button class="primary" onclick="go('urgent')">
       Ik voel me niet veilig
     </button>
-
-    <button class="secondary" onclick="go('welcome')">
-      Terug naar het begin
-    </button>
   </div>
 </section>
 
@@ -374,6 +376,7 @@ a:focus-visible {
 
     <div class="note">
       <p>Je kunt bijvoorbeeld zeggen:</p>
+
       <p>
         <strong>
           "Het gaat niet zo goed met me.
@@ -417,6 +420,7 @@ a:focus-visible {
       <p>
         Je kunt zeggen:
       </p>
+
       <p>
         <strong>
           "Ik ben niet veilig met mijn gedachten.
@@ -453,10 +457,14 @@ a:focus-visible {
   </div>
 </section>
 
-<!-- ALTIJD BEREIKBARE STEUN -->
+<!-- VASTE NAVIGATIE -->
 
-<div class="helpbar">
-  <button onclick="go('support')">
+<div class="nav">
+  <button class="home" id="homeButton" onclick="go('welcome')">
+    🏠 Terug naar het begin
+  </button>
+
+  <button id="helpButton" onclick="go('support')">
     🤝 Ik heb iemand nodig
   </button>
 </div>
@@ -530,6 +538,13 @@ function go(id) {
   );
 
   document.getElementById(id).classList.add("active");
+
+  document.getElementById("homeButton").style.display =
+    id === "welcome" ? "none" : "block";
+
+  document.getElementById("helpButton").style.display =
+    id === "urgent" ? "none" : "block";
+
   window.scrollTo(0, 0);
 }
 
@@ -562,6 +577,8 @@ function person(key) {
 
   go("person");
 }
+
+go("welcome");
 </script>
 
 </body>
