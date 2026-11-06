@@ -137,7 +137,7 @@ a.button {
   font-size: 15px;
 }
 
-.nav .home {
+.nav .back {
   background: #edf4ef;
   border: none;
 }
@@ -417,9 +417,7 @@ a:focus-visible {
     </p>
 
     <div class="note">
-      <p>
-        Je kunt zeggen:
-      </p>
+      <p>Je kunt zeggen:</p>
 
       <p>
         <strong>
@@ -460,8 +458,8 @@ a:focus-visible {
 <!-- VASTE NAVIGATIE -->
 
 <div class="nav">
-  <button class="home" id="homeButton" onclick="go('welcome')">
-    🏠 Terug naar het begin
+  <button class="back" id="backButton" onclick="go('choices')">
+    ← Terug naar mijn keuzes
   </button>
 
   <button id="helpButton" onclick="go('support')">
@@ -539,11 +537,15 @@ function go(id) {
 
   document.getElementById(id).classList.add("active");
 
-  document.getElementById("homeButton").style.display =
-    id === "welcome" ? "none" : "block";
+  document.getElementById("backButton").style.display =
+    id === "welcome" || id === "choices" || id === "urgent"
+      ? "none"
+      : "block";
 
   document.getElementById("helpButton").style.display =
-    id === "urgent" ? "none" : "block";
+    id === "urgent" || id === "support"
+      ? "none"
+      : "block";
 
   window.scrollTo(0, 0);
 }
